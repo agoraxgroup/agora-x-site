@@ -490,6 +490,11 @@ img {
     text-align: center;
 }
 
+.text-center p {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .mt-lg {
     margin-top: var(--space-lg);
 }
