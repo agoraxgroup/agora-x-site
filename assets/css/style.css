@@ -7,16 +7,17 @@
    CSS Variables - Agora X Palette
    ======================================== */
 :root {
-    /* Colors - matching agorax.org */
+    /* Colors - Earthy Mumford & Sons palette */
     --color-white: rgb(255, 255, 255);
     --color-black: rgb(0, 0, 0);
     --color-dark-gray: rgb(33, 33, 33);
     --color-light-gray: rgb(238, 238, 238);
-    --color-indigo-blue: rgb(63, 81, 181);
+    --color-earth-brown: #786F4F;
+    --color-rusty-red: #ed1b26;  /* Sampled from Rushmere Tour 2025 poster */
+    --color-rusty-red-dark: #d81e27;  /* Darker variant for hover states */
     --color-medium-gray: rgb(109, 109, 109);
 
     /* Legacy color mappings */
-    --color-earth-brown: var(--color-indigo-blue);
     --color-neutral-bg: var(--color-light-gray);
     --color-charcoal: var(--color-dark-gray);
     --color-gray: var(--color-medium-gray);
@@ -102,7 +103,7 @@ p {
 }
 
 a {
-    color: var(--color-indigo-blue);
+    color: var(--color-earth-brown);
     text-decoration: none;
     transition: opacity 0.3s ease;
 }
@@ -169,7 +170,7 @@ a:hover {
 }
 
 .nav-menu a:hover {
-    color: var(--color-indigo-blue);
+    color: var(--color-earth-brown);
     opacity: 1;
 }
 
@@ -266,7 +267,7 @@ a:hover {
 }
 
 .card h2, .card h3 {
-    color: var(--color-indigo-blue);
+    color: var(--color-earth-brown);
     margin-bottom: var(--space-sm);
 }
 
@@ -294,23 +295,23 @@ a:hover {
 }
 
 .btn-primary {
-    background-color: var(--color-indigo-blue);
+    background-color: var(--color-rusty-red);
     color: var(--color-white);
 }
 
 .btn-primary:hover {
-    background-color: rgb(48, 63, 159);
+    background-color: var(--color-rusty-red-dark);
     opacity: 1;
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--color-indigo-blue);
-    border: 2px solid var(--color-indigo-blue);
+    color: var(--color-rusty-red);
+    border: 2px solid var(--color-rusty-red);
 }
 
 .btn-secondary:hover {
-    background-color: var(--color-indigo-blue);
+    background-color: var(--color-rusty-red);
     color: var(--color-white);
     opacity: 1;
 }
@@ -360,7 +361,8 @@ img {
 .card img {
     width: 100%;
     height: auto;
-    object-fit: contain;
+    object-fit: scale-down;
+    max-height: 500px;
     background-color: var(--color-warm-white);
 }
 
