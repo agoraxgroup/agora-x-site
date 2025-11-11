@@ -3,6 +3,8 @@ layout: default
 title: Tools
 ---
 
+<script src="{{ '/assets/js/password-protect.js' | relative_url }}"></script>
+
 <div class="container container-narrow" markdown="1">
 
 # Agora X Tools
