@@ -3,7 +3,7 @@ layout: default
 title: Meet-ups and Events
 ---
 
-<div class="container container-narrow">
+<div class="container container-narrow" markdown="1">
 
 # Meet-ups and Events
 

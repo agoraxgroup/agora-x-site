@@ -3,7 +3,7 @@ layout: default
 title: Contact
 ---
 
-<div class="container container-narrow text-center">
+<div class="container container-narrow text-center" markdown="1">
 
 # Get in Touch
 

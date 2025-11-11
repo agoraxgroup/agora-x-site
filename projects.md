@@ -3,7 +3,7 @@ layout: default
 title: Other Projects
 ---
 
-<div class="container container-narrow">
+<div class="container container-narrow" markdown="1">
 
 # Other Projects
 

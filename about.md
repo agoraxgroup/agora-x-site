@@ -3,7 +3,7 @@ layout: default
 title: About Us
 ---
 
-<div class="container container-narrow">
+<div class="container container-narrow" markdown="1">
 
 # About Agora X
 
