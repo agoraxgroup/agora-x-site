@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 
-<div class="hero" style="background-image: url('https://lh3.googleusercontent.com/sitesv/AAzXCkeRrpJCwxikNdyH--F_zRqeZN9jajdMAoAfwoGLhlaJ1lqy9-EI7HrKE9T8mTPdG319rDyhiWE1_PCEGzuUFSjxdDggsGFdfxSlifap_XyQOZqgiDrBsMephIJGB5pTPilZz0MESqnGw3G_Y_PwT4ymqkoKanujes0CcpOHIqETuhcz0p7M-vhT=w16383');">
+<div class="hero" style="background-image: url('{{ '/images/hero-background.jpg' | relative_url }}');">
     <div class="hero-content">
         <h1>Agora X</h1>
         <p class="tagline">Where community & music intersect</p>
