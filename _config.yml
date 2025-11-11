@@ -4,8 +4,8 @@
 title: Agora X
 tagline: Where community & music intersect
 description: A community celebrating music and connection since 2020
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://agorax.org" # your custom domain
+baseurl: "/agora-x-site" # the subpath of your site (for GitHub Pages)
+url: "https://agoraxgroup.github.io" # GitHub Pages URL (change to https://agorax.org when custom domain is active)
 
 # Build settings
 markdown: kramdown
