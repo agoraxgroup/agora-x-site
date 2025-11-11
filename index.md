@@ -3,7 +3,7 @@ layout: default
 title: Home
 ---
 
-<div class="hero" style="background-image: url('{{ '/images/hero-background.jpg' | relative_url }}');">
+<div class="hero" style="background-image: url('{{ '/images/home/hero-background.jpg' | relative_url }}');">
     <div class="hero-content">
         <h1>Agora X</h1>
         <p class="tagline">Where community & music intersect</p>

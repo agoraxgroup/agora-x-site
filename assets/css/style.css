@@ -4,19 +4,30 @@
  */
 
 /* ========================================
-   CSS Variables - Mumford & Sons Palette
+   CSS Variables - Agora X Palette
    ======================================== */
 :root {
-    /* Colors */
-    --color-earth-brown: #786F4F;
-    --color-neutral-bg: #DFE4E2;
-    --color-charcoal: #1a1a1a;
-    --color-gray: #969696;
-    --color-white: #FFFFFF;
-    --color-warm-white: #FAF9F7;
+    /* Colors - matching agorax.org */
+    --color-white: rgb(255, 255, 255);
+    --color-black: rgb(0, 0, 0);
+    --color-dark-gray: rgb(33, 33, 33);
+    --color-light-gray: rgb(238, 238, 238);
+    --color-indigo-blue: rgb(63, 81, 181);
+    --color-medium-gray: rgb(109, 109, 109);
 
-    /* Typography */
-    --font-main: 'Raleway', -apple-system, sans-serif;
+    /* Legacy color mappings */
+    --color-earth-brown: var(--color-indigo-blue);
+    --color-neutral-bg: var(--color-light-gray);
+    --color-charcoal: var(--color-dark-gray);
+    --color-gray: var(--color-medium-gray);
+    --color-warm-white: var(--color-white);
+
+    /* Typography - matching agorax.org */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Open Sans', sans-serif;
+    --font-ui: 'Google Sans', 'Roboto', sans-serif;
+    --font-main: var(--font-body);
+
     --font-weight-light: 300;
     --font-weight-normal: 400;
     --font-weight-semibold: 600;
@@ -50,8 +61,9 @@ html {
 }
 
 body {
-    font-family: var(--font-main);
+    font-family: var(--font-body);
     font-weight: var(--font-weight-normal);
+    font-size: 16px;
     line-height: 1.6;
     color: var(--color-charcoal);
     background-color: var(--color-neutral-bg);
@@ -61,6 +73,7 @@ body {
    Typography
    ======================================== */
 h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
     font-weight: var(--font-weight-bold);
     line-height: 1.2;
     margin-bottom: var(--space-sm);
@@ -68,8 +81,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    font-size: clamp(2rem, 5vw, 3.815rem);
-    font-weight: var(--font-weight-black);
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 4.5rem);
+    font-weight: var(--font-weight-bold);
     margin-bottom: var(--space-md);
 }
 
@@ -88,20 +102,20 @@ p {
 }
 
 a {
-    color: var(--color-earth-brown);
+    color: var(--color-indigo-blue);
     text-decoration: none;
     transition: opacity 0.3s ease;
 }
 
 a:hover {
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 /* ========================================
    Navigation
    ======================================== */
 .site-nav {
-    background-color: var(--color-charcoal);
+    background-color: var(--color-white);
     padding: var(--space-sm) 0;
     position: sticky;
     top: 0;
@@ -120,9 +134,10 @@ a:hover {
 }
 
 .site-logo {
+    font-family: var(--font-ui);
     font-size: 1.5rem;
     font-weight: var(--font-weight-black);
-    color: var(--color-white);
+    color: var(--color-charcoal);
     letter-spacing: 0.05em;
     display: flex;
     align-items: center;
@@ -144,7 +159,8 @@ a:hover {
 }
 
 .nav-menu a {
-    color: var(--color-white);
+    font-family: var(--font-ui);
+    color: var(--color-charcoal);
     font-weight: var(--font-weight-semibold);
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -153,7 +169,8 @@ a:hover {
 }
 
 .nav-menu a:hover {
-    color: var(--color-earth-brown);
+    color: var(--color-indigo-blue);
+    opacity: 1;
 }
 
 /* ========================================
@@ -249,7 +266,7 @@ a:hover {
 }
 
 .card h2, .card h3 {
-    color: var(--color-earth-brown);
+    color: var(--color-indigo-blue);
     margin-bottom: var(--space-sm);
 }
 
@@ -277,24 +294,25 @@ a:hover {
 }
 
 .btn-primary {
-    background-color: var(--color-earth-brown);
+    background-color: var(--color-indigo-blue);
     color: var(--color-white);
 }
 
 .btn-primary:hover {
-    background-color: #5f5a3f;
+    background-color: rgb(48, 63, 159);
     opacity: 1;
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--color-earth-brown);
-    border: 2px solid var(--color-earth-brown);
+    color: var(--color-indigo-blue);
+    border: 2px solid var(--color-indigo-blue);
 }
 
 .btn-secondary:hover {
-    background-color: var(--color-earth-brown);
+    background-color: var(--color-indigo-blue);
     color: var(--color-white);
+    opacity: 1;
 }
 
 /* ========================================
@@ -316,7 +334,8 @@ a:hover {
 .footer-note {
     font-size: 0.85rem;
     font-weight: var(--font-weight-light);
-    color: var(--color-earth-brown);
+    color: var(--color-medium-gray);
+    opacity: 0.8;
 }
 
 /* ========================================
