@@ -393,15 +393,22 @@
                 }
             }
 
-            // Clear previous QR code
-            document.getElementById('qrcode').innerHTML = '';
+            // Clear previous QR code completely
+            const qrcodeElement = document.getElementById('qrcode');
+            qrcodeElement.innerHTML = ''; // Clear HTML
+
+            // Destroy old qrcode instance if it exists
+            if (qrcode) {
+                qrcode.clear();
+                qrcode = null;
+            }
 
             // Store current values
             currentURL = url;
             currentLabel = label;
 
-            // Generate new QR code
-            qrcode = new QRCode(document.getElementById('qrcode'), {
+            // Generate new QR code with fresh instance
+            qrcode = new QRCode(qrcodeElement, {
                 text: url,
                 width: size,
                 height: size,
