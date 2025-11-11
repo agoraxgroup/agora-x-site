@@ -68,36 +68,4 @@ But our one night Party turned into a week long celebration of shared experience
   </div>
 </div>
 
-<style>
-.photos-carousel {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin: 2rem 0;
-}
-
-.carousel-item {
-  text-align: center;
-}
-
-.carousel-item img {
-  width: 100%;
-  height: auto;
-  border-radius: 4px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-}
-
-.carousel-caption {
-  margin-top: 1rem;
-  font-weight: 600;
-  color: #786F4F;
-}
-
-@media (max-width: 768px) {
-  .photos-carousel {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
-
 </div>

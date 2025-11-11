@@ -541,3 +541,36 @@ img {
     margin-top: var(--space-md);
     color: var(--color-charcoal);
 }
+
+/* ========================================
+   Photos Carousel (Events Page)
+   ======================================== */
+.photos-carousel {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-xl) 0;
+}
+
+.carousel-item {
+    text-align: center;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+.carousel-caption {
+    margin-top: var(--space-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-earth-brown);
+}
+
+@media (max-width: 768px) {
+    .photos-carousel {
+        grid-template-columns: 1fr;
+    }
+}
