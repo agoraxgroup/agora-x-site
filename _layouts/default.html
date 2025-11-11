@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+
+    <!-- Google Fonts - Raleway (Mumford & Sons inspired) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="site-nav">
+        <div class="nav-container">
+            <a href="{{ '/' | relative_url }}" class="site-logo">{{ site.title }}</a>
+            <ul class="nav-menu">
+                <li><a href="{{ '/' | relative_url }}">Home</a></li>
+                <li><a href="{{ '/events' | relative_url }}">Events</a></li>
+                <li><a href="{{ '/projects' | relative_url }}">Projects</a></li>
+                <li><a href="{{ '/about' | relative_url }}">About</a></li>
+                <li><a href="{{ '/journey' | relative_url }}">Our Journey</a></li>
+                <li><a href="{{ '/news' | relative_url }}">News</a></li>
+                <li><a href="{{ '/tools' | relative_url }}">Tools</a></li>
+                <li><a href="{{ '/contact' | relative_url }}">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="site-content">
+        {{ content }}
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <p>&copy; {{ 'now' | date: "%Y" }} {{ site.title }}. {{ site.tagline }}</p>
+            <p class="footer-note">Est. 2020</p>
+        </div>
+    </footer>
+</body>
+</html>

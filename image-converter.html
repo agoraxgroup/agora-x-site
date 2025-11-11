@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Drive Image Link Converter - Agora X</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #DFE4E2 0%, #786F4F 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #786F4F;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #DFE4E2;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'Courier New', monospace;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #786F4F;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            background-color: #786F4F;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #5f5a3f;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .output-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #DFE4E2;
+        }
+
+        .success {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .instructions {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .instructions h3 {
+            color: #786F4F;
+            margin-bottom: 10px;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .copy-btn {
+            background-color: #28a745;
+            padding: 8px 20px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .copy-btn:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ Google Drive Image Converter</h1>
+        <p class="subtitle">Convert Google Drive share links to image URLs for your website</p>
+
+        <div class="instructions">
+            <h3>How to Use:</h3>
+            <ol>
+                <li>Upload your image to Google Drive</li>
+                <li>Right-click → <strong>Share</strong> → Set to <strong>"Anyone with the link"</strong></li>
+                <li>Copy the share link and paste it below</li>
+                <li>Click "Convert" to get your image URL and markdown code</li>
+            </ol>
+        </div>
+
+        <div style="margin-top: 25px;">
+            <label for="driveLink">Paste Your Google Drive Link:</label>
+            <input
+                type="text"
+                id="driveLink"
+                placeholder="https://drive.google.com/file/d/1ABC123xyz/view?usp=sharing"
+            >
+            <button onclick="convertLink()">Convert Link</button>
+        </div>
+
+        <div id="successMsg" class="success"></div>
+        <div id="errorMsg" class="error"></div>
+
+        <div id="outputSection" class="output-section" style="display: none;">
+            <label>Image URL (for direct use):</label>
+            <input type="text" id="imageUrl" readonly>
+            <button class="copy-btn" onclick="copyToClipboard('imageUrl')">📋 Copy URL</button>
+
+            <div style="margin-top: 20px;">
+                <label>Markdown Code (for website pages):</label>
+                <textarea id="markdownCode" readonly></textarea>
+                <button class="copy-btn" onclick="copyToClipboard('markdownCode')">📋 Copy Markdown</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function convertLink() {
+            const input = document.getElementById('driveLink').value.trim();
+            const successMsg = document.getElementById('successMsg');
+            const errorMsg = document.getElementById('errorMsg');
+            const outputSection = document.getElementById('outputSection');
+
+            // Hide previous messages
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            outputSection.style.display = 'none';
+
+            if (!input) {
+                showError('Please paste a Google Drive link!');
+                return;
+            }
+
+            // Extract ID from Google Drive link
+            // Supports formats:
+            // https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+            // https://drive.google.com/open?id=FILE_ID
+            let fileId = null;
+
+            // Try format 1: /d/FILE_ID/
+            const match1 = input.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (match1) {
+                fileId = match1[1];
+            } else {
+                // Try format 2: ?id=FILE_ID
+                const match2 = input.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+                if (match2) {
+                    fileId = match2[1];
+                }
+            }
+
+            if (!fileId) {
+                showError('Invalid Google Drive link. Please make sure you copied the entire share link.');
+                return;
+            }
+
+            // Generate the image URL
+            const imageUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
+            const markdownCode = `![Image description](${imageUrl})`;
+
+            // Display results
+            document.getElementById('imageUrl').value = imageUrl;
+            document.getElementById('markdownCode').value = markdownCode;
+            outputSection.style.display = 'block';
+
+            showSuccess('✅ Successfully converted! Copy the URL or markdown code below.');
+        }
+
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            element.select();
+            element.setSelectionRange(0, 99999); // For mobile devices
+
+            try {
+                document.execCommand('copy');
+                showSuccess('📋 Copied to clipboard!');
+            } catch (err) {
+                showError('Failed to copy. Please select and copy manually.');
+            }
+        }
+
+        function showSuccess(message) {
+            const successMsg = document.getElementById('successMsg');
+            successMsg.textContent = message;
+            successMsg.style.display = 'block';
+        }
+
+        function showError(message) {
+            const errorMsg = document.getElementById('errorMsg');
+            errorMsg.textContent = message;
+            errorMsg.style.display = 'block';
+        }
+
+        // Allow Enter key to convert
+        document.getElementById('driveLink').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                convertLink();
+            }
+        });
+    </script>
+</body>
+</html>

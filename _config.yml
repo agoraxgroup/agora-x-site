@@ -1,0 +1,36 @@
+# Agora X Website Configuration
+
+# Site settings
+title: Agora X
+tagline: Where community & music intersect
+description: A community celebrating music and connection since 2020
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://agorax.org" # your custom domain
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+# Exclude from processing
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Collections (optional - for future events/projects)
+collections:
+  events:
+    output: true
+    permalink: /events/:name/
+  projects:
+    output: true
+    permalink: /projects/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"

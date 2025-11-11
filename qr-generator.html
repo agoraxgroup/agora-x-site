@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator - Agora X</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #DFE4E2 0%, #786F4F 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        h1 {
+            color: #786F4F;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="url"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #DFE4E2;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="url"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #786F4F;
+        }
+
+        input[type="color"] {
+            width: 80px;
+            height: 40px;
+            border: 2px solid #DFE4E2;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .color-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .color-item {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        button {
+            background-color: #786F4F;
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #5f5a3f;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button.secondary {
+            background-color: #28a745;
+        }
+
+        button.secondary:hover {
+            background-color: #218838;
+        }
+
+        .qr-output {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #DFE4E2;
+            text-align: center;
+        }
+
+        #qrcode {
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        #qrcode canvas {
+            display: block !important;
+            margin: 0 auto;
+        }
+
+        .instructions {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        .instructions h3 {
+            color: #786F4F;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .instructions strong {
+            color: #786F4F;
+        }
+
+        .tips {
+            background-color: #fff3cd;
+            border-left: 4px solid #856404;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+        }
+
+        .tips h4 {
+            color: #856404;
+            margin-bottom: 8px;
+        }
+
+        .success-msg {
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .examples {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-size: 0.85rem;
+        }
+
+        .examples strong {
+            color: #004085;
+        }
+
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .color-group {
+                flex-direction: column;
+            }
+
+            .button-group {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .preset-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .preset-btn {
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 2px solid #DFE4E2;
+            color: #333;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .preset-btn:hover {
+            background-color: #786F4F;
+            color: white;
+            border-color: #786F4F;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 QR Code Generator</h1>
+        <p class="subtitle">Create permanent, free QR codes for sponsorships, promotions, donations, and events</p>
+
+        <div class="instructions">
+            <h3>How It Works:</h3>
+            <ul>
+                <li><strong>Permanent:</strong> These QR codes are generated on your device and never expire</li>
+                <li><strong>Free Forever:</strong> No subscription, no service that can disappear</li>
+                <li><strong>Any URL:</strong> Link to sponsorship pages, donation forms, event tickets, or any website</li>
+                <li><strong>Printable:</strong> Download as PNG for flyers, posters, or social media</li>
+                <li><strong>Customizable:</strong> Choose colors and sizes to match your brand</li>
+            </ul>
+        </div>
+
+        <!-- URL Input -->
+        <div class="input-group">
+            <label for="url">Enter Your URL:</label>
+            <input
+                type="url"
+                id="url"
+                placeholder="https://example.com/donate"
+                value=""
+            >
+            <div class="examples">
+                <strong>Examples:</strong> Donation page, Sponsorship form, Event registration, Merchandise store, Social media profile, Google Form
+            </div>
+        </div>
+
+        <!-- Quick Presets -->
+        <div class="input-group">
+            <label>Quick URL Presets (Optional):</label>
+            <div class="preset-buttons">
+                <button class="preset-btn" onclick="setURL('https://paypal.me/')">PayPal Donate</button>
+                <button class="preset-btn" onclick="setURL('https://venmo.com/')">Venmo</button>
+                <button class="preset-btn" onclick="setURL('https://cash.app/')">Cash App</button>
+                <button class="preset-btn" onclick="setURL('https://instagram.com/')">Instagram</button>
+                <button class="preset-btn" onclick="setURL('https://facebook.com/')">Facebook</button>
+                <button class="preset-btn" onclick="setURL('mailto:agoraxgroup@agorax.org')">Email Us</button>
+            </div>
+        </div>
+
+        <!-- Label -->
+        <div class="input-group">
+            <label for="label">Label (Optional - for your reference):</label>
+            <input
+                type="text"
+                id="label"
+                placeholder="e.g., 'Spring Event Donations' or 'Sponsor Page'"
+            >
+        </div>
+
+        <!-- Size -->
+        <div class="input-group">
+            <label for="size">QR Code Size:</label>
+            <select id="size">
+                <option value="200">Small (200x200) - Social Media</option>
+                <option value="300" selected>Medium (300x300) - Flyers</option>
+                <option value="400">Large (400x400) - Posters</option>
+                <option value="600">Extra Large (600x600) - Banners</option>
+            </select>
+        </div>
+
+        <!-- Colors -->
+        <div class="input-group">
+            <label>Colors:</label>
+            <div class="color-group">
+                <div class="color-item">
+                    <label for="colorDark">QR Code Color:</label>
+                    <input type="color" id="colorDark" value="#000000">
+                </div>
+                <div class="color-item">
+                    <label for="colorLight">Background Color:</label>
+                    <input type="color" id="colorLight" value="#ffffff">
+                </div>
+            </div>
+        </div>
+
+        <!-- Generate Button -->
+        <button onclick="generateQR()">🎯 Generate QR Code</button>
+
+        <!-- Output Area -->
+        <div id="qrOutput" class="qr-output hidden">
+            <h3>Your QR Code:</h3>
+            <div id="qrLabel" style="margin-bottom: 10px; font-weight: 600; color: #786F4F;"></div>
+            <div id="qrcode"></div>
+
+            <div class="button-group">
+                <button class="secondary" onclick="downloadQR()">💾 Download PNG</button>
+                <button onclick="printQR()">🖨️ Print</button>
+            </div>
+
+            <div id="successMsg" class="success-msg"></div>
+
+            <div class="tips">
+                <h4>💡 Tips for Use:</h4>
+                <ul style="margin-left: 20px; line-height: 1.8;">
+                    <li>Test the QR code with your phone camera before printing</li>
+                    <li>Print at least 1 inch (2.5cm) square for reliable scanning</li>
+                    <li>Ensure good contrast between QR code and background</li>
+                    <li>Keep the URL short for simpler, more scannable codes</li>
+                    <li>Save the PNG file with a descriptive name for future reference</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        let qrcode = null;
+        let currentURL = '';
+        let currentLabel = '';
+
+        function setURL(url) {
+            document.getElementById('url').value = url;
+        }
+
+        function generateQR() {
+            const url = document.getElementById('url').value.trim();
+            const label = document.getElementById('label').value.trim();
+            const size = parseInt(document.getElementById('size').value);
+            const colorDark = document.getElementById('colorDark').value;
+            const colorLight = document.getElementById('colorLight').value;
+
+            // Validation
+            if (!url) {
+                alert('Please enter a URL!');
+                return;
+            }
+
+            // Basic URL validation
+            if (!url.startsWith('http://') && !url.startsWith('https://') && !url.startsWith('mailto:')) {
+                if (confirm('URL should start with http:// or https://. Add https:// automatically?')) {
+                    document.getElementById('url').value = 'https://' + url;
+                    return;
+                }
+            }
+
+            // Clear previous QR code
+            document.getElementById('qrcode').innerHTML = '';
+
+            // Store current values
+            currentURL = url;
+            currentLabel = label;
+
+            // Generate new QR code
+            qrcode = new QRCode(document.getElementById('qrcode'), {
+                text: url,
+                width: size,
+                height: size,
+                colorDark: colorDark,
+                colorLight: colorLight,
+                correctLevel: QRCode.CorrectLevel.H // High error correction
+            });
+
+            // Show output section
+            document.getElementById('qrOutput').classList.remove('hidden');
+
+            // Update label
+            if (label) {
+                document.getElementById('qrLabel').textContent = label;
+                document.getElementById('qrLabel').style.display = 'block';
+            } else {
+                document.getElementById('qrLabel').style.display = 'none';
+            }
+
+            // Show success message
+            const successMsg = document.getElementById('successMsg');
+            successMsg.textContent = '✅ QR Code generated successfully! Scan with your phone to test.';
+            successMsg.style.display = 'block';
+
+            // Scroll to QR code
+            setTimeout(() => {
+                document.getElementById('qrOutput').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+
+        function downloadQR() {
+            const canvas = document.querySelector('#qrcode canvas');
+            if (!canvas) {
+                alert('Please generate a QR code first!');
+                return;
+            }
+
+            // Create filename
+            const label = document.getElementById('label').value.trim();
+            const filename = label
+                ? `agora-x-qr-${label.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`
+                : `agora-x-qr-${Date.now()}.png`;
+
+            // Convert canvas to blob and download
+            canvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+
+                // Show success message
+                const successMsg = document.getElementById('successMsg');
+                successMsg.textContent = `💾 Downloaded as: ${filename}`;
+                successMsg.style.display = 'block';
+            });
+        }
+
+        function printQR() {
+            const qrElement = document.getElementById('qrcode');
+            if (!qrElement.innerHTML) {
+                alert('Please generate a QR code first!');
+                return;
+            }
+
+            // Create print window
+            const printWindow = window.open('', '_blank');
+            const label = document.getElementById('qrLabel').textContent;
+            const url = currentURL;
+
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Print QR Code - Agora X</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            text-align: center;
+                            padding: 40px;
+                        }
+                        h2 {
+                            color: #786F4F;
+                            margin-bottom: 10px;
+                        }
+                        .url {
+                            color: #666;
+                            margin-bottom: 20px;
+                            word-break: break-all;
+                        }
+                        canvas {
+                            margin: 20px auto;
+                            display: block;
+                        }
+                        .footer {
+                            margin-top: 30px;
+                            color: #999;
+                            font-size: 0.9em;
+                        }
+                        @media print {
+                            @page {
+                                margin: 1cm;
+                            }
+                        }
+                    </style>
+                </head>
+                <body>
+                    ${label ? `<h2>${label}</h2>` : '<h2>Agora X QR Code</h2>'}
+                    <div class="url">${url}</div>
+                    ${qrElement.innerHTML}
+                    <div class="footer">Generated by Agora X QR Generator | agorax.org</div>
+                </body>
+                </html>
+            `);
+
+            printWindow.document.close();
+
+            // Wait for content to load, then print
+            setTimeout(() => {
+                printWindow.print();
+            }, 250);
+        }
+
+        // Allow Enter key to generate
+        document.getElementById('url').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generateQR();
+            }
+        });
+    </script>
+</body>
+</html>
