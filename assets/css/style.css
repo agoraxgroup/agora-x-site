@@ -356,13 +356,11 @@ img {
     object-fit: contain;
 }
 
-/* Card images - ensure proper aspect ratio and loading */
+/* Card images - show full images without cropping */
 .card img {
     width: 100%;
     height: auto;
-    object-fit: cover;
-    min-height: 200px;
-    max-height: 350px;
+    object-fit: contain;
     background-color: var(--color-warm-white);
 }
 
