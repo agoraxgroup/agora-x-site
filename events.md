@@ -62,10 +62,6 @@ But our one night Party turned into a week long celebration of shared experience
     <img src="{{ '/images/events/event-012.jpg' | relative_url }}" alt="Mumford & Sites 2022">
     <p class="carousel-caption">Mumford & Sites 2022</p>
   </div>
-  <div class="carousel-item">
-    <img src="{{ '/images/events/event-013.jpg' | relative_url }}" alt="Zoom Concert with Marcus Mumford">
-    <p class="carousel-caption">Zoom Concert with Marcus Mumford</p>
-  </div>
 </div>
 
 </div>
