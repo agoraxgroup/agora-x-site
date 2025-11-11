@@ -1,16 +1,14 @@
----
-layout: default
-title: About Us
----
+# About Us Page Content - AgoraX.org
 
-<div class="container container-narrow" markdown="1">
+## Page URL
+https://www.agorax.org/about-us
 
-# About Us
+## Heading
+About us
 
-<div class="about-content" markdown="1">
+## Main Content
 
-## Our Story
-
+### Introduction
 Agora X (Agora For) was started by a simple post in Agora, the Official Mumford & Sons Community (on Facebook), in May 2020. The team that was created from that post is a group of 7 professional women from around the globe who all work full time, support our families and all had a desire and need to give back somehow during a global pandemic.
 
 This desire bonded us. And so it began with the goal to support Omeara, a London grassroots venue owned by Ben Lovett and tvg hospitality, that like many businesses, was hit hard during lockdown. Our fundraising secured an epic party and venue takeover for our fellow Agorians.
@@ -18,32 +16,27 @@ This desire bonded us. And so it began with the goal to support Omeara, a London
 During this journey, working together virtually and in person, we have become close friends and colleagues. We have developed a passion to turn our efforts into something more global and support our Agora community. We have created bonds with each other, signed a Code of Conduct and developed professional relationships within the Mumford & Sons, War Child and Children in Conflict circles.
 
 We are ready for the next chapter..
-**We are Agora X.**
+We are Agora X.
 
-### Our Team
+### Team Members
+Carla Kupka | Francesca Braniger | Johanne ten Breul | Judy Kleinschmidt | Lesya Williams | Marcy Fox | Sherry Dibble
 
-**Carla Kupka | Francesca Braniger | Johanne ten Breul | Judy Kleinschmidt | Lesya Williams | Marcy Fox | Sherry Dibble**
+## Guiding Light Section
 
-![Agora X Team]({{ '/images/about/team-photo.png' | relative_url }}){:.content-image}
+### Guiding Light
+"Inspired by the giving spirit of Mumford & Sons to support and elevate Agora and connect with community philanthropic efforts."
 
----
+### Mission
+"Founded on the values of mutual respect, philanthropy, and advocacy; we will engage our community to lift up our neighbors and empower them to prosper."
 
-## Our Guiding Light
+## Footer
+Agora X
+EST. 2020
 
-> "Inspired by the giving spirit of Mumford & Sons to support and elevate Agora and connect with community philanthropic efforts."
+## Navigation
+- Home
+- Meet-ups and events
+- Other projects
+- About us
+- More
 
-## Our Mission
-
-> "Founded on the values of mutual respect, philanthropy, and advocacy; we will engage our community to lift up our neighbors and empower them to prosper."
-
----
-
-## Get Involved
-
-Interested in being part of Agora X?
-
-<a href="{{ '/contact' | relative_url }}" class="btn btn-primary">Reach out to us</a>
-
-</div>
-
-</div>

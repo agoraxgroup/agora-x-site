@@ -6,6 +6,14 @@ _site/
 .bundle/
 vendor/
 
+# Docker
+Dockerfile
+docker-compose.yml
+Gemfile.docker
+Gemfile.docker.lock
+DOCKER-SETUP.md
+.dockerignore
+
 # macOS
 .DS_Store
 

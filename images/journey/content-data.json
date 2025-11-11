@@ -1,0 +1,184 @@
+{
+  "page": {
+    "url": "https://www.agorax.org/our-journey",
+    "title": "Our journey",
+    "extraction_date": "2025-11-11"
+  },
+  "text_content": {
+    "heading": "Our journey",
+    "paragraphs": [
+      {
+        "order": 1,
+        "content": "Agora X is a group of Agora members who came together during COVID to focus on charitable efforts. We came together originally to purchase The Big Party at Omeara in London- which we, as a group, were able to do- and we had a blast celebrating last October."
+      },
+      {
+        "order": 2,
+        "content": "Since our formation in May 2020, we've raised over $140.000 / ₤110.000 in various efforts benefitting various charities, such as WarChild UK, Children in Conflict, Grenfell Foundation, etc. Efforts range in involvement, from marathons, to a simple purchase of a bracelet."
+      },
+      {
+        "order": 3,
+        "content": "We've gotten a private concert from Marcus, had a private tasting of Ted's cider, had Ben DJ for us, raffled off a Marcus signed football signed especially for Agora, chatted with Marcus Haney, and watched Ross Stirling climb the Matterhorn. We've infiltrated homes with bracelets, ornaments, posters, t-shirts, and pens. We've chatted on Zooms and hugged in person in London. We've celebrated the victories of buying The Big Party, reaching a large donation goal, and helped clean each other's merch closet out with our Chris Maas market."
+      },
+      {
+        "order": 4,
+        "content": "In 2023 we raised over $14.000 with contributions to War Child, Children In Conflict and the Grenfell campaign."
+      },
+      {
+        "order": 5,
+        "content": "Through the past year, our Agora X community has donated to various targeted fundraising efforts, including the Syria/Turkey earthquake, Afghanistan appeal, Violence in Israel and Gaza, as well as worked with CIC and WC to create our own stand alone platform pages for Agora."
+      },
+      {
+        "order": 6,
+        "content": "With every effort, the 7 admins of Agora X all gather on Zoom to talk about the effort and each time we say the same thing…. "We're blown away by our amazing community"."
+      },
+      {
+        "order": 7,
+        "content": "We're more than a charitable group… we're friends who've come together to help worthy causes. We are Agora X… where community and music intersect."
+      }
+    ]
+  },
+  "key_information": {
+    "formation_date": "May 2020",
+    "formation_context": "During COVID pandemic",
+    "total_fundraising": {
+      "usd": 140000,
+      "gbp": 110000,
+      "note": "and counting"
+    },
+    "2023_fundraising": {
+      "usd": 14000
+    },
+    "admin_count": 7,
+    "mission": "Where community and music intersect",
+    "charities_supported": [
+      "War Child UK",
+      "Children in Conflict",
+      "Grenfell Foundation",
+      "Syria/Turkey earthquake relief",
+      "Afghanistan appeal",
+      "Violence in Israel and Gaza relief"
+    ],
+    "notable_events": [
+      "The Big Party at Omeara in London",
+      "Private concert with Marcus Mumford",
+      "Private tasting of Ted's cider",
+      "Ben DJ performance",
+      "Marcus signed football raffle",
+      "Conversations with Marcus Haney",
+      "Ross Stirling Matterhorn climb"
+    ],
+    "fundraising_activities": [
+      "Marathons",
+      "Merchandise sales (bracelets, ornaments, posters, t-shirts, pens)",
+      "Chris Maas market",
+      "Crowdfunder campaigns",
+      "#saveOmeara campaign",
+      "#saveourvenues campaign"
+    ]
+  },
+  "images": [
+    {
+      "index": 0,
+      "filename": "logo-image.jpg",
+      "original_url": "https://lh3.googleusercontent.com/sitesv/AAzXCkd098wWfaH9x4Ob7Hr-82WnAl3BA8ua5Bn-JpCj8l6YpARW_JCIFVcPEg24P142SIPwfFeziOSc5_i1SivfYCdGq-u5pdyjYOw0ZB_YCPdW7_cYP7RHgvsecKod51CbgINbS3fkW-HsXNNzcDPmdFV-h7wDkyfUK0HwByDT0zET6eOkAupk9G0lQFI=w16383",
+      "type": "img-element",
+      "alt": "",
+      "dimensions": {
+        "width": 531,
+        "height": 275
+      },
+      "description": "Logo/header image (appears twice on page)",
+      "size_kb": 27
+    },
+    {
+      "index": 1,
+      "filename": "journey-image-01.jpg",
+      "original_url": "https://lh3.googleusercontent.com/sitesv/AAzXCkdRW0tXo3fy5GgCKUtNUCBaarnxm3lc5Om2NBVLB-z_U1ncRhfEbpnHGZbZ3UZuJ04tuwQ4Uo20COWQgtL_LzfaAHKR3EvFKjNWyOdv58naX6-45VdNasP8AqIVTPcD6CEuimXz7E_jqF3ZXzT5bM0kCoenw2kWcKVYVpllTcdkDOc8XuPAkRcb=w1280",
+      "type": "img-element",
+      "alt": "",
+      "dimensions": {
+        "width": 225,
+        "height": 225
+      },
+      "description": "Journey timeline/photo image",
+      "size_kb": 5.3
+    },
+    {
+      "index": 2,
+      "filename": "journey-image-02.jpg",
+      "original_url": "https://lh3.googleusercontent.com/sitesv/AAzXCkc2-cvCiC7BKwwQrT_0ber2_WtK5CTm2lH-GP4TCf0eIC6hWvYfuaHhP0IQkd3gLCQJgUHaMe69lkGNvcmBrcNlWnF5d0qnGocbS9rtRCacR1S1GHorCogQJK2okHCDp8JiSCRR908voZd1-PsI987zrKBPsufZfBKAI2aR4Nqy_y8H2ws_XQMBu1w=w1280",
+      "type": "img-element",
+      "alt": "",
+      "dimensions": {
+        "width": 474,
+        "height": 474
+      },
+      "description": "Journey timeline/photo image",
+      "size_kb": 10
+    },
+    {
+      "index": 3,
+      "filename": "journey-image-03.jpg",
+      "original_url": "https://lh3.googleusercontent.com/sitesv/AAzXCkf4V1ayjRPkEF6Rp0ln2q7-lDyOHr7juSeUAldOor0gv1w_yjkJY8xEu8CKnqEUc2T3OuBB3C_MIOLTBEl-3hBbVrRx8GGXiuaPVlzlt2jE69VdAjcUaGXr5YB_N1OEZ1eDPLZdgJDyssswwErOQOh11N4oxP3IBBw81q-qfwOc_nttO91aCmcYP5qpMWFVzt-pqEFROsY5osBzCkETZGTKdXItU53WxzgIAeA=w1280",
+      "type": "img-element",
+      "alt": "",
+      "dimensions": {
+        "width": 500,
+        "height": 399
+      },
+      "description": "Journey timeline/photo image",
+      "size_kb": 2.3
+    },
+    {
+      "index": 4,
+      "filename": "background-image.jpg",
+      "original_url": "https://lh3.googleusercontent.com/sitesv/AAzXCkdHozLfSOaCuhpYZyE3p9JtJAr8EyCMTMh1YnWZRNhCXZ8mMa071nFABpFe-axCwZ7a3gBRzeLrUYSQebvKwpa2YjVXil4WEuUfE1sHfTzyiH_PmGg2jNGZjqmlRnx6ThCu5pOO2GsLKnTY_lj__FRy7iToq25pQ4IQKcU7XG1kBJ8fKqgp6t5Z=w16383",
+      "type": "background-image",
+      "alt": "Background image",
+      "description": "CSS background/decorative image",
+      "size_kb": 2.3
+    }
+  ],
+  "page_structure": {
+    "layout": "single-column narrative",
+    "sections": [
+      "Header/Navigation",
+      "Main Content (text)",
+      "Image Gallery",
+      "Footer"
+    ],
+    "navigation_items": [
+      "Home",
+      "Meet-ups and events",
+      "Other projects",
+      "About us",
+      "More"
+    ],
+    "design": {
+      "typography": {
+        "headings": "Playfair Display",
+        "body": "Open Sans"
+      },
+      "color_scheme": {
+        "primary_dark": "rgb(48,48,51)",
+        "secondary_dark": "rgb(27,27,27)",
+        "light_text": "rgb(225,223,219)",
+        "dark_text": "rgb(33,33,33)"
+      },
+      "responsive_breakpoints": [
+        "480px",
+        "768px",
+        "1280px"
+      ]
+    }
+  },
+  "meta": {
+    "platform": "Google Sites",
+    "seo": {
+      "page_title": "Our journey",
+      "meta_description": "Agora X is a group of Agora members who came together during COVID to focus on charitable efforts. We came together originally to purchase The Big Party at Omeara in London- which we, as a group, were able to do- and we had a blast celebrating last October. Since our formation in May 2020, we've",
+      "og_type": "website",
+      "og_url": "https://www.agorax.org/our-journey"
+    }
+  }
+}

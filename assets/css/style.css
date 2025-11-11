@@ -351,6 +351,19 @@ img {
     margin: var(--space-md) 0;
     border-radius: var(--border-radius);
     box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Card images - ensure proper aspect ratio and loading */
+.card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    min-height: 200px;
+    max-height: 350px;
+    background-color: var(--color-warm-white);
 }
 
 /* ========================================
@@ -488,4 +501,38 @@ img {
 .container-narrow {
     max-width: 900px;
     margin: 0 auto;
+}
+
+/* ========================================
+   Social Media Icons
+   ======================================== */
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+    align-items: center;
+}
+
+.social-icon {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    margin: var(--space-sm) 0;
+}
+
+.social-icon:hover {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.social-links a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+.social-links h3 {
+    margin-top: var(--space-md);
+    color: var(--color-charcoal);
 }
