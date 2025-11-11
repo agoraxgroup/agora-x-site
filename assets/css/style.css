@@ -124,6 +124,15 @@ a:hover {
     font-weight: var(--font-weight-black);
     color: var(--color-white);
     letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.site-logo img {
+    height: 40px;
+    width: auto;
+    display: block;
 }
 
 .nav-menu {
@@ -334,6 +343,10 @@ img {
     .nav-container {
         flex-direction: column;
         gap: var(--space-sm);
+    }
+
+    .site-logo img {
+        height: 35px;
     }
 
     .nav-menu {
