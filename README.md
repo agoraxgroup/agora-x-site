@@ -12,7 +12,9 @@ Visit us at: **[https://agorax.org](https://agorax.org)**
 
 ## 📝 Editing the Website
 
-**For Agora X team members:** See [EDITING-GUIDE.md](EDITING-GUIDE.md) for detailed instructions on how to update content, add events, and manage images.
+**For Agora X team members:**
+- **[EDITING-GUIDE.md](EDITING-GUIDE.md)** - How to update content and add events
+- **[IMAGE-GUIDE.md](IMAGE-GUIDE.md)** - How to add and manage images
 
 ### Quick Start for Editors
 
