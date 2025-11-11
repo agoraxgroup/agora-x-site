@@ -89,14 +89,14 @@ jobs:
         run: |
           echo "Testing built site structure..."
 
-          # Check if critical pages exist
-          critical_pages=("index.html" "about.html" "events.html" "contact.html")
+          # Check if critical pages exist (either as page.html or page/index.html)
+          critical_pages=("index" "about" "events" "contact")
 
           for page in "${critical_pages[@]}"; do
-            if [ -f "_site/$page" ]; then
-              echo "✓ $page exists"
+            if [ -f "_site/${page}.html" ] || [ -f "_site/${page}/index.html" ]; then
+              echo "✓ ${page} exists"
             else
-              echo "✗ $page missing!"
+              echo "✗ ${page} missing!"
               exit 1
             fi
           done
