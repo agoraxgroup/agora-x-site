@@ -15,9 +15,9 @@ We've already raised over **$140,000 / £110,000** and beautiful imagine how muc
 
 ---
 
-## Zoom Concert with Marcus Mumford - 21 + 22 August 2020
+## Zoom Concert with Marcus Mumford –21 + 22 August 2020
 
-![Zoom Concert]({{ '/images/events/event-013.jpg' | relative_url }}){:.content-image}
+![Zoom Concert]({{ '/images/events/zoom-concert-poster.jpg' | relative_url }}){:.content-image}
 
 A private Agora concert with Marcus Mumford to raise funds for War Child UK. Two concerts held on two consecutive nights with over 600 fans globally. Together we raised over **$36,000 / £28,000**.
 
@@ -25,49 +25,79 @@ A private Agora concert with Marcus Mumford to raise funds for War Child UK. Two
 
 ## Mumford & Sites - 23 October 2022
 
-![Mumford & Sites]({{ '/images/events/event-012.jpg' | relative_url }}){:.content-image}
+**A group tour day in London for over 100 people**
 
-A group tour day in London for over 100 people.
+![Mumford & Sites]({{ '/images/events/mumford-sites-poster.jpg' | relative_url }}){:.content-image}
 
-While in London it was really important to everyone to still be able to give something. Mumford & Sites, separate from the celebrations at Omeara and separate from our Peace Band campaign - we sold wristbands on the day and raised **$5,000 / £4,000** for War Child UK.
+While in London it was really important to everyone to still be able to do something with our beloved London based charity partner, War Child UK, separate from the celebrations at Omeara. And of course everyone wanted to see all the significant Mumford locations… So what better way than to arrange a tour around London on Double Decker Bus seeing all the Mumford & Sites. We picniced in Shepherd Bush, shared a pint at Worlds End pub, took endless photos at every stop, walked Hampstead Heath, sang our hearts out on the bus, laughed, cried, heard incredibly moving and meaningful stories of children in conflict from War Child CEO Rob Williams and Jim Benner, Global Music Lead, who joined us for the afternoon.
 
-Double Decker Bus touring all the key Mumford locations plus a few extra special fun stops.
+We raised close to **$5,000**.
 
 ---
 
-## The Big Party - Rescheduled to 24 October 2022 at Omeara in London, UK
+## The Big Party - Rescheduled to 24 October 2022
 
-![The Big Party]({{ '/images/events/event-011.jpg' | relative_url }}){:.content-image}
+**at Omeara in London, UK**
 
-Originally planned for 22 February 2022-2022/2022, Agora X fundraised over **$51,000 / £39,000** as Crowdfunder and other offers from #teamOmeara and #teamventures, to earn an amazing takeover of the Omeara venue in London for up to 575 people, known as The Big Party!
+![The Big Party]({{ '/images/events/big-party-poster.jpg' | relative_url }}){:.content-image}
 
-And...WE DID IT!
+Originally planned for 22 February 2022 (22/2/2022). Agora X fundraised over **$51,000 / £39,000** via Crowdfunder and other efforts for #saveOmeara and #saveourvenues, to earn an amazing takeover of the Omeara venue in London for up to 375 people, known as The Big Party!
 
-The funds were raised, the party happened on 24 October 2022 with guest DJ Nick Etwell, featuring both live boozy and sober Champagne Method and THEE PEOPLE. A truly epic night with Agora finally together!
+And.... WE DID IT!
 
-But our one night Party turned into a week long celebration of shared experiences, dining tours, wine trips, afternoon teas, dinners, shows, and sporting matches, all around together with our amazing Agora community and TPTB Agoraverse.
+The funds were raised, the party happened on 24 October 2022 with guest DJ (Mr Lovett himself), Ted sharing both his honey and latest Champagne Method Cider and over 250 amazing Agorables! The drinks, the food, the venue, 2/3 of our lads, numerous special guests, communion artists performing and THE PEOPLE. A truly epic night with Agora finally Together!
+
+But our one night Party turned into a week long celebration of shared experiences, doing tours, side trips, afternoon teas, dinners, shows, and sporting matches, all shared together with our amazing Agora community and full of AgoraLove!
 
 ---
 
 ## Photos
 
-<div class="section-grid" markdown="1">
-
-<div class="card" markdown="1">
-![Event Memory 1]({{ '/images/events/event-011.jpg' | relative_url }}){:.content-image}
-### The Big Party 2022
+<div class="photos-carousel">
+  <div class="carousel-item">
+    <img src="{{ '/images/events/event-011.jpg' | relative_url }}" alt="The Big Party 2022">
+    <p class="carousel-caption">The Big Party 2022</p>
+  </div>
+  <div class="carousel-item">
+    <img src="{{ '/images/events/event-012.jpg' | relative_url }}" alt="Mumford & Sites 2022">
+    <p class="carousel-caption">Mumford & Sites 2022</p>
+  </div>
+  <div class="carousel-item">
+    <img src="{{ '/images/events/event-013.jpg' | relative_url }}" alt="Zoom Concert with Marcus Mumford">
+    <p class="carousel-caption">Zoom Concert with Marcus Mumford</p>
+  </div>
 </div>
 
-<div class="card" markdown="1">
-![Event Memory 2]({{ '/images/events/event-012.jpg' | relative_url }}){:.content-image}
-### Mumford & Sites tour
-</div>
+<style>
+.photos-carousel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
 
-<div class="card" markdown="1">
-![Event Memory 3]({{ '/images/events/event-013.jpg' | relative_url }}){:.content-image}
-### Zoom Concert with Marcus
-</div>
+.carousel-item {
+  text-align: center;
+}
 
-</div>
+.carousel-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+}
+
+.carousel-caption {
+  margin-top: 1rem;
+  font-weight: 600;
+  color: #786F4F;
+}
+
+@media (max-width: 768px) {
+  .photos-carousel {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 
 </div>
