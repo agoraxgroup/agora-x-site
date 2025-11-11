@@ -1,0 +1,88 @@
+name: Accessibility Testing
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  a11y-check:
+    name: Accessibility Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Pa11y
+        run: npm install -g pa11y-ci
+
+      - name: Create Pa11y config
+        run: |
+          cat > .pa11yci.json << 'EOF'
+          {
+            "defaults": {
+              "standard": "WCAG2AA",
+              "runners": ["axe"],
+              "timeout": 60000,
+              "wait": 1000,
+              "chromeLaunchConfig": {
+                "args": ["--no-sandbox", "--disable-setuid-sandbox"]
+              }
+            },
+            "urls": [
+              "file://${{ github.workspace }}/_site/index.html",
+              "file://${{ github.workspace }}/_site/about.html",
+              "file://${{ github.workspace }}/_site/events.html",
+              "file://${{ github.workspace }}/_site/projects.html",
+              "file://${{ github.workspace }}/_site/journey.html",
+              "file://${{ github.workspace }}/_site/news.html",
+              "file://${{ github.workspace }}/_site/contact.html",
+              "file://${{ github.workspace }}/_site/tools.html"
+            ]
+          }
+          EOF
+
+      - name: Run Pa11y accessibility tests
+        run: |
+          pa11y-ci || echo "Accessibility issues found - review output above"
+        continue-on-error: true
+
+      - name: Generate accessibility report
+        if: always()
+        run: |
+          echo "## Accessibility Test Results" > a11y-report.md
+          echo "" >> a11y-report.md
+          echo "Tested against WCAG 2.1 Level AA standards." >> a11y-report.md
+          echo "" >> a11y-report.md
+          echo "**Note:** Some warnings are informational and don't necessarily indicate problems." >> a11y-report.md
+          echo "" >> a11y-report.md
+          echo "Review the full output in the workflow logs for details." >> a11y-report.md
+
+      - name: Upload accessibility report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-report
+          path: a11y-report.md

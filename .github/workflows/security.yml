@@ -1,0 +1,144 @@
+name: Security Scanning
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run security scan weekly on Sundays at 2am UTC
+    - cron: '0 2 * * 0'
+  workflow_dispatch:
+
+jobs:
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Dependency Review
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: moderate
+          deny-licenses: GPL-2.0, GPL-3.0
+
+  secret-scanning:
+    name: Secret Scanning
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: TruffleHog Secret Scan
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
+          extra_args: --only-verified
+
+  code-scanning:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: javascript
+          queries: security-and-quality
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  gemfile-audit:
+    name: Ruby Gem Security Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Install bundler-audit
+        run: gem install bundler-audit
+
+      - name: Update vulnerability database
+        run: bundle-audit update
+
+      - name: Run security audit
+        run: bundle-audit check
+        continue-on-error: true
+
+  mixed-content-check:
+    name: Mixed Content Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+
+      - name: Check for mixed content (HTTP in HTTPS site)
+        run: |
+          echo "## Mixed Content Check" > mixed-content-report.md
+          echo "" >> mixed-content-report.md
+          echo "Checking for insecure HTTP resources in HTML files..." >> mixed-content-report.md
+          echo "" >> mixed-content-report.md
+
+          # Search for http:// links (excluding comments and localhost)
+          mixed=$(grep -r 'http://' _site --include="*.html" | grep -v 'localhost' | grep -v '<!--' || true)
+
+          if [ -n "$mixed" ]; then
+            echo "### Potential Mixed Content Issues" >> mixed-content-report.md
+            echo "" >> mixed-content-report.md
+            echo "Found HTTP resources that should use HTTPS:" >> mixed-content-report.md
+            echo '```' >> mixed-content-report.md
+            echo "$mixed" >> mixed-content-report.md
+            echo '```' >> mixed-content-report.md
+            echo "" >> mixed-content-report.md
+            echo "**Action Required:** Update these URLs to use HTTPS." >> mixed-content-report.md
+          else
+            echo "No mixed content issues found. All resources use HTTPS." >> mixed-content-report.md
+          fi
+
+          cat mixed-content-report.md
+
+      - name: Upload mixed content report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mixed-content-report
+          path: mixed-content-report.md

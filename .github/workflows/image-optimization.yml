@@ -1,0 +1,125 @@
+name: Image Optimization Check
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'images/**'
+      - 'assets/**/*.png'
+      - 'assets/**/*.jpg'
+      - 'assets/**/*.jpeg'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'images/**'
+      - 'assets/**/*.png'
+      - 'assets/**/*.jpg'
+      - 'assets/**/*.jpeg'
+  workflow_dispatch:
+
+jobs:
+  check-images:
+    name: Check Image Sizes
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check image file sizes
+        run: |
+          echo "## Image Size Report" > image-report.md
+          echo "" >> image-report.md
+          echo "Checking for large images that could be optimized..." >> image-report.md
+          echo "" >> image-report.md
+
+          # Find images larger than 500KB
+          large_images=$(find images assets -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \) -size +500k 2>/dev/null || true)
+
+          if [ -n "$large_images" ]; then
+            echo "### Large Images (>500KB)" >> image-report.md
+            echo "" >> image-report.md
+            echo "Consider optimizing these images for web:" >> image-report.md
+            echo "" >> image-report.md
+
+            while IFS= read -r file; do
+              if [ -f "$file" ]; then
+                size=$(du -h "$file" | cut -f1)
+                echo "- **$file** - $size" >> image-report.md
+              fi
+            done <<< "$large_images"
+
+            echo "" >> image-report.md
+            echo "**Recommendation:** Use tools like TinyPNG, ImageOptim, or convert images to WebP format." >> image-report.md
+          else
+            echo "All images are under 500KB. Great job!" >> image-report.md
+          fi
+
+          echo "" >> image-report.md
+          echo "### Image Count Summary" >> image-report.md
+          echo "" >> image-report.md
+
+          jpg_count=$(find images assets -type f \( -name "*.jpg" -o -name "*.jpeg" \) 2>/dev/null | wc -l || echo 0)
+          png_count=$(find images assets -type f -name "*.png" 2>/dev/null | wc -l || echo 0)
+          webp_count=$(find images assets -type f -name "*.webp" 2>/dev/null | wc -l || echo 0)
+
+          echo "- JPG/JPEG: $jpg_count" >> image-report.md
+          echo "- PNG: $png_count" >> image-report.md
+          echo "- WebP: $webp_count" >> image-report.md
+
+          cat image-report.md
+
+      - name: Upload image report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: image-optimization-report
+          path: image-report.md
+
+  suggest-webp:
+    name: Suggest WebP Conversion
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for WebP opportunities
+        run: |
+          echo "## WebP Conversion Suggestions" > webp-report.md
+          echo "" >> webp-report.md
+          echo "WebP format typically provides 25-35% smaller file sizes than JPEG/PNG." >> webp-report.md
+          echo "" >> webp-report.md
+
+          # Count non-WebP images
+          jpg_count=$(find images assets -type f \( -name "*.jpg" -o -name "*.jpeg" \) 2>/dev/null | wc -l || echo 0)
+          png_count=$(find images assets -type f -name "*.png" 2>/dev/null | wc -l || echo 0)
+
+          total=$((jpg_count + png_count))
+
+          if [ $total -gt 0 ]; then
+            echo "Found $total images that could be converted to WebP:" >> webp-report.md
+            echo "" >> webp-report.md
+            echo "- $jpg_count JPG/JPEG images" >> webp-report.md
+            echo "- $png_count PNG images" >> webp-report.md
+            echo "" >> webp-report.md
+            echo "### Benefits of WebP:" >> webp-report.md
+            echo "- Smaller file sizes (faster loading)" >> webp-report.md
+            echo "- Better compression" >> webp-report.md
+            echo "- Supported by all modern browsers" >> webp-report.md
+            echo "" >> webp-report.md
+            echo "### Conversion Tools:" >> webp-report.md
+            echo "- Online: https://cloudconvert.com/webp-converter" >> webp-report.md
+            echo "- CLI: \`cwebp input.jpg -q 80 -o output.webp\`" >> webp-report.md
+          else
+            echo "No images found that need conversion." >> webp-report.md
+          fi
+
+          cat webp-report.md
+
+      - name: Upload WebP report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: webp-suggestions
+          path: webp-report.md

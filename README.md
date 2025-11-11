@@ -2,6 +2,13 @@
 
 Where community & music intersect. Est. 2020.
 
+[![CI - Quality Checks](https://github.com/agoraxgroup/agora-x-site/actions/workflows/ci.yml/badge.svg)](https://github.com/agoraxgroup/agora-x-site/actions/workflows/ci.yml)
+[![Jekyll Build Test](https://github.com/agoraxgroup/agora-x-site/actions/workflows/jekyll-build.yml/badge.svg)](https://github.com/agoraxgroup/agora-x-site/actions/workflows/jekyll-build.yml)
+[![Link Checker](https://github.com/agoraxgroup/agora-x-site/actions/workflows/link-checker.yml/badge.svg)](https://github.com/agoraxgroup/agora-x-site/actions/workflows/link-checker.yml)
+[![Linting](https://github.com/agoraxgroup/agora-x-site/actions/workflows/linting.yml/badge.svg)](https://github.com/agoraxgroup/agora-x-site/actions/workflows/linting.yml)
+[![Accessibility Testing](https://github.com/agoraxgroup/agora-x-site/actions/workflows/accessibility.yml/badge.svg)](https://github.com/agoraxgroup/agora-x-site/actions/workflows/accessibility.yml)
+[![Security Scanning](https://github.com/agoraxgroup/agora-x-site/actions/workflows/security.yml/badge.svg)](https://github.com/agoraxgroup/agora-x-site/actions/workflows/security.yml)
+
 ## About This Repository
 
 This is the official website for Agora X, built with GitHub Pages and Jekyll. The site uses a Mumford & Sons-inspired design with earthy tones and rustic elegance.

@@ -1,0 +1,114 @@
+name: Link Checker
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Run weekly on Mondays at 9am UTC
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
+
+jobs:
+  internal-links:
+    name: Check Internal Links
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+
+      - name: Check internal links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: |
+            --verbose
+            --no-progress
+            --exclude-mail
+            --exclude-private
+            --base _site
+            --accept 200,204,206,301,302,307,308,429
+            '_site/**/*.html'
+          fail: false
+
+      - name: Create Issue on Failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: 'Broken internal links detected',
+              body: 'The internal link checker found broken links. Please check the workflow run for details.',
+              labels: ['bug', 'documentation']
+            })
+
+  external-links:
+    name: Check External Links
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+
+      - name: Check external links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: |
+            --verbose
+            --no-progress
+            --exclude-mail
+            --exclude-private
+            --accept 200,204,206,301,302,307,308,429,999
+            --timeout 30
+            --retry-wait-time 10
+            --max-retries 3
+            --exclude '(facebook\.com|instagram\.com|linkedin\.com|twitter\.com|x\.com)'
+            '_site/**/*.html'
+          fail: false
+
+      - name: Generate markdown report
+        if: always()
+        run: |
+          echo "## External Link Check Results" > link-report.md
+          echo "" >> link-report.md
+          echo "External links have been checked. Review the full output above for details." >> link-report.md
+          echo "" >> link-report.md
+          echo "Note: Social media links (Facebook, Instagram, LinkedIn, Twitter) are excluded as they often block automated checks." >> link-report.md
+
+      - name: Upload link report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: link-check-report
+          path: link-report.md

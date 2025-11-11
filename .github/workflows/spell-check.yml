@@ -1,0 +1,88 @@
+name: Spell Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  spellcheck:
+    name: Check Spelling
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create custom dictionary
+        run: |
+          cat > .wordlist.txt << 'EOF'
+          # Custom dictionary for Agora X
+          Agora
+          agorax
+          agoraxgroup
+          baseurl
+          Gemfile
+          GitHub
+          HTMLHint
+          Jekyll
+          kramdown
+          Mumford
+          permalink
+          QR
+          WCAG
+          yml
+          PayPal
+          Venmo
+          EOF
+
+      - name: Check Spelling
+        uses: rojopolis/spellcheck-github-actions@0.41.0
+        with:
+          config_path: .github/workflows/spellcheck-config.yml
+          source_files: '*.md !vendor/** !_site/** !node_modules/**'
+          task_name: Markdown
+        continue-on-error: true
+
+      - name: Create spellcheck config
+        run: |
+          mkdir -p .github/workflows
+          cat > .github/workflows/spellcheck-config.yml << 'EOF'
+          matrix:
+          - name: Markdown
+            aspell:
+              lang: en
+              d: en_US
+            dictionary:
+              wordlists:
+              - .wordlist.txt
+              encoding: utf-8
+            pipeline:
+            - pyspelling.filters.markdown:
+            - pyspelling.filters.html:
+                comments: false
+                ignores:
+                - code
+                - pre
+            sources:
+            - '**/*.md'
+            default_encoding: utf-8
+          EOF
+
+      - name: Generate spellcheck report
+        if: always()
+        run: |
+          echo "## Spell Check Results" > spellcheck-report.md
+          echo "" >> spellcheck-report.md
+          echo "Review the output above for potential spelling issues." >> spellcheck-report.md
+          echo "" >> spellcheck-report.md
+          echo "**Note:** Technical terms and proper nouns may be flagged. Add them to .wordlist.txt if they're correct." >> spellcheck-report.md
+
+      - name: Upload spellcheck report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: spellcheck-report
+          path: spellcheck-report.md

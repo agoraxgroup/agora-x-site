@@ -1,0 +1,39 @@
+# Custom dictionary for Agora X spell checking
+# Add one word per line (case-insensitive)
+# Comments start with #
+
+# Organization names
+Agora
+agorax
+agoraxgroup
+
+# Technical terms
+baseurl
+Gemfile
+GitHub
+HTMLHint
+Jekyll
+kramdown
+permalink
+QR
+WCAG
+yml
+JSON
+YAML
+Dockerfile
+WebP
+
+# People and brands
+Mumford
+PayPal
+Venmo
+
+# Common abbreviations
+PR
+CI
+CD
+URL
+API
+CSS
+HTML
+JS
