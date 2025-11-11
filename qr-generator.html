@@ -393,15 +393,16 @@
                 }
             }
 
-            // Clear previous QR code completely
+            // Completely clear the container
             const qrcodeElement = document.getElementById('qrcode');
-            qrcodeElement.innerHTML = ''; // Clear HTML
 
-            // Destroy old qrcode instance if it exists
-            if (qrcode) {
-                qrcode.clear();
-                qrcode = null;
+            // Remove all children to prevent duplicates
+            while (qrcodeElement.firstChild) {
+                qrcodeElement.removeChild(qrcodeElement.firstChild);
             }
+
+            // Reset qrcode instance
+            qrcode = null;
 
             // Store current values
             currentURL = url;
