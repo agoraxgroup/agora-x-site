@@ -11,15 +11,15 @@ title: Home
     </div>
 </div>
 
-<div class="container">
+<div class="container" markdown="1">
 
 ## Welcome to Agora X
 
 A community celebrating music and connection since 2020.
 
-<div class="section-grid">
+<div class="section-grid" markdown="1">
 
-<div class="card">
+<div class="card" markdown="1">
 
 ### Meet-ups and Events
 
@@ -29,7 +29,7 @@ Read everything about our previous meet-ups and events.
 
 </div>
 
-<div class="card">
+<div class="card" markdown="1">
 
 ### Other Projects
 
@@ -39,7 +39,7 @@ Read everything about our previous and upcoming projects.
 
 </div>
 
-<div class="card">
+<div class="card" markdown="1">
 
 ### About Us
 
@@ -49,7 +49,7 @@ Want to know more about our Guiding Light and mission? Get to know Agora X.
 
 </div>
 
-<div class="card">
+<div class="card" markdown="1">
 
 ### Our Journey
 
@@ -59,7 +59,7 @@ The journey of Agora X started in 2020. Learn more about our story.
 
 </div>
 
-<div class="card">
+<div class="card" markdown="1">
 
 ### Contact
 
@@ -69,7 +69,7 @@ Want to get in contact with Agora X? See our details.
 
 </div>
 
-<div class="card">
+<div class="card" markdown="1">
 
 ### News
 

@@ -14,10 +14,15 @@ permalink: pretty
 # Exclude from processing
 exclude:
   - README.md
+  - EDITING-GUIDE.md
+  - SETUP-GUIDE.md
+  - DEPLOYMENT-CHECKLIST.md
   - Gemfile
   - Gemfile.lock
   - node_modules
   - vendor
+  - .git
+  - .gitignore
 
 # Collections (optional - for future events/projects)
 collections:
