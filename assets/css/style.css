@@ -131,6 +131,7 @@ a:hover {
     list-style: none;
     gap: var(--space-md);
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .nav-menu a {
@@ -327,6 +328,8 @@ img {
 /* ========================================
    Responsive Design
    ======================================== */
+
+/* Tablet and smaller (768px) */
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
@@ -336,25 +339,102 @@ img {
     .nav-menu {
         gap: var(--space-sm);
         justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .nav-menu a {
+        /* Bigger touch targets for mobile */
+        padding: 0.75rem 1rem;
+        min-height: 44px; /* Apple accessibility guidelines */
+        display: flex;
+        align-items: center;
     }
 
     .section-grid {
         grid-template-columns: 1fr;
+        gap: var(--space-md);
     }
 
     .hero {
         min-height: 50vh;
         padding: var(--space-lg) var(--space-sm);
     }
+
+    .card {
+        padding: var(--space-md);
+    }
+
+    .btn {
+        /* Full-width buttons on mobile for easier tapping */
+        width: 100%;
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        min-height: 44px;
+    }
+
+    /* Better spacing for mobile */
+    .site-content {
+        padding: var(--space-md) var(--space-sm);
+    }
 }
 
+/* Mobile phones (480px and smaller) */
 @media (max-width: 480px) {
     :root {
-        font-size: 14px;
+        font-size: 15px; /* Slightly larger for readability */
     }
 
     .nav-menu {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
+        width: 100%;
+    }
+
+    .nav-menu li {
+        flex: 1 1 auto;
+    }
+
+    .nav-menu a {
+        padding: 0.85rem;
+        justify-content: center;
+    }
+
+    /* Ensure hero text is readable */
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero .tagline {
+        font-size: 1rem;
+    }
+
+    /* Cards stack nicely */
+    .card {
+        padding: var(--space-md);
+        margin-bottom: var(--space-sm);
+    }
+
+    /* Better button sizing for thumbs */
+    .btn {
+        padding: 1.25rem 2rem;
+        font-size: 1.05rem;
+        letter-spacing: 0.03em;
+    }
+
+    /* Mobile-friendly footer */
+    .site-footer {
+        padding: var(--space-md) var(--space-sm);
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra small devices (360px) - common concert phone scenario */
+@media (max-width: 360px) {
+    .nav-menu {
+        font-size: 0.75rem;
+    }
+
+    .nav-menu a {
+        padding: 0.7rem 0.5rem;
     }
 }
 
